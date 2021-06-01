@@ -1,11 +1,13 @@
 Wireless Sensor Netowork (WSN):<br/>
          + LAUNCHXL-CC2650<br/>
          + CC2538<br/>
-Sensor:  + DHT11(Temparature + Humidity) -> MQ2 (Gas)<br/>
+Sensor:/
+         + DHT11(Temparature + Humidity) -> MQ2 (Gas)<br/>
          + BMP 80(Temperature + Pressure)<br/>
          + AM321(Motion) + MG90S(Servo) -> Door<br/>
          + BH1750(Light)<br/>
          + Fan(HVAC)<br/>
+Camera:
 Gateway:   LAUNCHXL-CC2650 + Raspberry 4<br/>
 Broker MQTT:<br/>
          + Local:  Really Small Message Broker(rsmb) +  Mosquitto<br/>
