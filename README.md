@@ -10,6 +10,7 @@ Wireless Sensor Netowork (WSN):<br/>
 + PIR AM312(Motion) + MG90S(Servo) -> Door<br/>
 + BH1750(Light)<br/>
 + Fan(HVAC)<br/>
++ Relay 4 channels 5V
 <br/>
 - Camera:<br/>
 + Raspberry Pi Camera Module V2 NoIR<br/>
