@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <title>6LowPan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+  </head>
+  <body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-dark bg-primary fixed-top fixed-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm3 col-md-2 mr-0" href="#">6LowPan</a>
+    </nav>
+    <!-- Sidebar -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 bg-light d-nome d-md-block sidebar">
+          <div class="left-sidebar">
+            <ul class="nav flex-column sidebar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">
+                    <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"></path>
+                    </svg>
+                    Connection</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"></path>
+                    </svg>
+                    Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"></path>
+                    </svg>
+                    Control Panel
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <svg class="bi bi-chevron-right" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"></path>
+                    </svg>
+                    Reports
+                  </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MainPage -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <!-- LightControl -->
+        <div class="row">
+            {% for currentLight in currentLights %}
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"> Light {{ currentLight.sensor_id }} - Living Room</h5>
+                         <!-- State ON -->
+                        {% if currentLight.state %}
+                            <span class="badge badge-primary">Status: ON</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"></path></svg>
+                                <!-- Description -->
+                                <p class="card-text">The Light on living room is on</p>
+                            <div class="form-check-switch">
+                                <a href="/light{{currentLight.sensor_id}}/1" class="btn btn-secondary disabled" role="button">Turn on</a>
+                                <a href="/light{{currentLight.sensor_id}}/0" class="btn btn-primary active" role="button">Turn off</a>
+                            <!-- Default switch -->
+                            <div class="custom-control custom-switch">
+                              <input type="checkbox" class="custom-control-input" id="customSwitches">
+                              <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+                            </div>
+                            </div>
+                        <!-- State OFF -->
+                        {% else %}
+                            <span class="badge badge-primary">Status: OFF</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-off" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.23 4.35A6.004 6.004 0 0 0 2 6c0 1.691.7 3.22 1.826 4.31.203.196.359.4.453.619l.762 1.769A.5.5 0 0 0 5.5 13a.5.5 0 0 0 0 1 .5.5 0 0 0 0 1l.224.447a1 1 0 0 0 .894.553h2.764a1 1 0 0 0 .894-.553L10.5 15a.5.5 0 0 0 0-1 .5.5 0 0 0 0-1 .5.5 0 0 0 .288-.091L9.878 12H5.83l-.632-1.467a2.954 2.954 0 0 0-.676-.941 4.984 4.984 0 0 1-1.455-4.405l-.837-.836zm1.588-2.653l.708.707a5 5 0 0 1 7.07 7.07l.707.707a6 6 0 0 0-8.484-8.484zm-2.172-.051a.5.5 0 0 1 .708 0l12 12a.5.5 0 0 1-.708.708l-12-12a.5.5 0 0 1 0-.708z"></path></svg>
+                                <!-- Description -->
+                                <p class="card-text">The Light on living room is off</p>
+                            <div class="form-check-switch">
+                                <a href="/light{{currentLight.sensor_id}}/1" class="btn btn-primary active" role="button">Turn on</a>
+                                <a href="/light{{currentLight.sensor_id}}/0" class="btn btn-secondary disabled" role="button">Turn off</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <!-- Fan, Door  -->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"> Fan control</h5>
+                                                <!-- State ON -->
+                            {% if currentFan.state %}
+                            <span class="badge badge-primary">Status: Running</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                                <!-- Description -->
+                                <p class="card-text">The Light on living room is on</p>
+                            <div class="form-check-switch">
+                                <a href="/fan/1" class="btn btn-secondary disable"  role="button">Turn on the Fan</a>
+                                <a href="/fan/0" class="btn btn-primary active" role="button">Turn off the Fan</a>
+                            </div>
+                        <!-- State OFF -->
+                            {% else %}
+                                <span class="badge badge-primary">Status: Stop</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb-off" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.23 4.35A6.004 6.004 0 0 0 2 6c0 1.691.7 3.22 1.826 4.31.203.196.359.4.453.619l.762 1.769A.5.5 0 0 0 5.5 13a.5.5 0 0 0 0 1 .5.5 0 0 0 0 1l.224.447a1 1 0 0 0 .894.553h2.764a1 1 0 0 0 .894-.553L10.5 15a.5.5 0 0 0 0-1 .5.5 0 0 0 0-1 .5.5 0 0 0 .288-.091L9.878 12H5.83l-.632-1.467a2.954 2.954 0 0 0-.676-.941 4.984 4.984 0 0 1-1.455-4.405l-.837-.836zm1.588-2.653l.708.707a5 5 0 0 1 7.07 7.07l.707.707a6 6 0 0 0-8.484-8.484zm-2.172-.051a.5.5 0 0 1 .708 0l12 12a.5.5 0 0 1-.708.708l-12-12a.5.5 0 0 1 0-.708z"></path></svg>
+                                    <!-- Description -->
+                                    <p class="card-text">The Light on living room is off</p>
+                                <div class="form-check-switch">
+                                    <a href="/fan/1" class="btn btn-primary active" role="button">Turn on the Fan</a>
+                                    <a href="/fan/0" class="btn btn-secondary disabled" role="button">Turn off the Fan</a>
+                                </div>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> Door control</h5>
+                         <!-- State ON -->
+                   {% if currentDoor.state %}
+                         <span class="badge badge-primary">Status: Close</span>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
+                            <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"></path>
+                            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+                          </svg>
+                             <!-- Description -->
+                             <p class="card-text">The Light on living room is on</p>
+
+                         <div class="form-check-switch">
+                             <a href="/door/control/1" class="btn btn-secondary disabled" role="button">Open the door</a>
+                             <a href="/door/control/0" class="btn btn-primary active"  role="button" >Close the door</a>
+                         </div>
+                     <!-- State OFF -->
+                     {% else %}
+                     <span class="badge badge-primary">Status: Open</span>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                        <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                      </svg>
+                             <!-- Description -->
+                             <p class="card-text">The Light on living room is off</p>
+                         <div class="form-check-switch">
+                             <a href="/door/control/1" class="btn btn-primary active" role="button">Open the door</a>
+                             <a href="/door/control/0" class="btn btn-secondary disabled" role="button">Close the door</a>
+                         </div>
+                     {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Dashboard -->
+    <h3>
+        Temperature: <span class="temperature9"></span>°C,
+        Humidity: <span class="humidity9"></span>Rh,
+        Pressure: <span class="pressure6"></span>Pa,
+        Light: <span class="light10"></span>Lux,
+        Gas: <span class="gas7"></span>ppm
+    </h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <div>
+                      <div
+                      style="width: 100%; height: 40px; position: absolute; top: 50%; left: 0; margin-top: 8px; line-height:19px; text-align: center; z-index: 999999999999999">
+                      <h4><b><span class="temperature9"></span>°C</b></h4>
+                        </div>
+                      <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <div>
+                          <div
+                          style="width: 100%; height: 40px; position: absolute; top: 50%; left: 0; margin-top: 8px; line-height:19px; text-align: center; z-index: 999999999999999">
+                          <h4><b><span class="humidity9"></span>°C</b></h4>
+                            </div>
+                          <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <div>
+                          <div
+                          style="width: 100%; height: 40px; position: absolute; top: 50%; left: 0; margin-top: 8px; line-height:19px; text-align: center; z-index: 999999999999999">
+                          <h4><b><span class="pressure6"></span>°C</b></h4>
+                            </div>
+                          <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="../static/js/chart.js"></script>
+  </body>
+</html>
