@@ -7,7 +7,7 @@ Wireless Sensor Netowork (WSN):<br/>
 - Sensor:<br/>
 + DHT11(Temparature + Humidity) -> MQ2 (Gas)<br/>
 + BMP 180(Temperature + Pressure)<br/>
-+ AM321(Motion) + MG90S(Servo) -> Door<br/>
++ PIR AM312(Motion) + MG90S(Servo) -> Door<br/>
 + BH1750(Light)<br/>
 + Fan(HVAC)<br/>
 <br/>
