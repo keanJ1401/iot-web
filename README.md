@@ -5,7 +5,7 @@ Wireless Sensor Netowork (WSN):<br/>
 + CC2538<br/>
 <br/>
 - Sensor:<br/>
-+ DHT11(Temparature + Humidity) -> MQ2 (Gas)<br/>
++ DHT11(Temperature + Humidity) -> MQ2 (Gas)<br/>
 + BMP 80(Temperature + Pressure)<br/>
 + AM321(Motion) + MG90S(Servo) -> Door<br/>
 + BH1750(Light)<br/>
@@ -22,8 +22,8 @@ Wireless Sensor Netowork (WSN):<br/>
 <br/>
 - Broker MQTT:<br/>
 + Local:  Really Small Message Broker(rsmb) +  Mosquitto<br/>
-+ Romote: EMQ X Cloud<br/>
-<br/>
++ Remote: EMQ X Cloud<br/>
+<br/>s
 - Database:  PostgreSQL on GCP<br/>
 <br/>
 - Webserver:<br/>

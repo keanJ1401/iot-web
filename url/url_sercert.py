@@ -1,0 +1,1 @@
+database_url = 'postgresql://postgres:user@35.221.141.147/database'
