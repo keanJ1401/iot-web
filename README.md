@@ -5,11 +5,18 @@ Wireless Sensor Netowork (WSN):<br/>
 + CC2538<br/>
 <br/>
 - Sensor:<br/>
+<<<<<<< HEAD
 + DHT11(Temperature + Humidity) -> MQ2 (Gas)<br/>
 + BMP 80(Temperature + Pressure)<br/>
 + AM321(Motion) + MG90S(Servo) -> Door<br/>
+=======
++ DHT11(Temparature + Humidity) -> MQ2 (Gas)<br/>
++ BMP 180(Temperature + Pressure)<br/>
++ PIR AM312(Motion) + MG90S(Servo) -> Door<br/>
+>>>>>>> 3b1054c03cb9041b5deda236f30a68f83a8efc02
 + BH1750(Light)<br/>
 + Fan(HVAC)<br/>
++ Relay 4 channels 5V
 <br/>
 - Camera:<br/>
 + Raspberry Pi Camera Module V2 NoIR<br/>
